@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Assignment2">
+  <ClassDiagramComponents>
+    <Class name="Person" package="classes" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="firstName" type="String" visibility="private"/>
+        <Field name="lastName" type="String" visibility="private"/>
+        <Field name="ssn" type="String" visibility="private"/>
+        <Field name="dob" type="LocalDate" visibility="private"/>
+        <Field name="gender" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="firstName"/>
+          <Argument type="String" name="lastName"/>
+          <Argument type="String" name="ssn"/>
+          <Argument type="LocalDate" name="dob"/>
+          <Argument type="String" name="gender"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getFirstName" returnType="String" visibility="public"/>
+        <Method name="getLastName" returnType="String" visibility="public"/>
+        <Method name="getSSN" returnType="String" visibility="public"/>
+        <Method name="getDOB" returnType="LocalDate" visibility="public"/>
+        <Method name="getGender" returnType="String" visibility="public"/>
+        <Method name="setFirstName" returnType="void" visibility="public">
+          <Argument type="String" name="firstName"/>
+        </Method>
+        <Method name="setLastName" returnType="void" visibility="public">
+          <Argument type="String" name="lastName"/>
+        </Method>
+        <Method name="setSSN" returnType="void" visibility="public">
+          <Argument type="String" name="ssn"/>
+        </Method>
+        <Method name="setDOB" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="dob"/>
+        </Method>
+        <Method name="setGender" returnType="void" visibility="public">
+          <Argument type="String" name="gender"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="User" package="classes" visibility="public" isFinal="true" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="phoneNumber" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="photo" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="firstName"/>
+          <Argument type="String" name="lastName"/>
+          <Argument type="String" name="ssn"/>
+          <Argument type="LocalDate" name="dob"/>
+          <Argument type="String" name="gender"/>
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="phone"/>
+          <Argument type="String" name="photo"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="getEmail" returnType="String" visibility="public"/>
+        <Method name="getPhoneNumber" returnType="String" visibility="public"/>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="getPhoto" returnType="String" visibility="public"/>
+        <Method name="setUsername" returnType="void" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="setEmail" returnType="void" visibility="public">
+          <Argument type="String" name="email"/>
+        </Method>
+        <Method name="setPhoneNumber" returnType="void" visibility="public">
+          <Argument type="String" name="phoneNumber"/>
+        </Method>
+        <Method name="setPassword" returnType="void" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="setPhoto" returnType="void" visibility="public">
+          <Argument type="String" name="photo"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="User" name="compare"/>
+        </Method>
+        <Method name="compareTo" returnType="int" visibility="public">
+          <Argument type="Object" name="compare"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UserList" package="classes" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="userList" type="QueueList&lt;User&gt;" visibility="private"/>
+        <Field name="out" type="ObjectOutputStream" visibility="private"/>
+        <Field name="in" type="ObjectInputStream" visibility="private"/>
+        <Field name="FILE" type="String" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="fileName"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addUser" returnType="void" visibility="public">
+          <Argument type="User" name="data"/>
+        </Method>
+        <Method name="doesUsernameExist" returnType="boolean" visibility="public">
+          <Argument type="String" name="data"/>
+        </Method>
+        <Method name="getUser" returnType="User" visibility="public">
+          <Argument type="String" name="data"/>
+        </Method>
+        <Method name="WriteList" returnType="void" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="CreateAccountController" package="Controllers" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="openDialog" type="Button" visibility="private"/>
+        <Field name="fNameField" type="TextField" visibility="private"/>
+        <Field name="lNameField" type="TextField" visibility="private"/>
+        <Field name="dobPicker" type="DatePicker" visibility="private"/>
+        <Field name="genderBox" type="ChoiceBox" visibility="private"/>
+        <Field name="userNameField" type="TextField" visibility="private"/>
+        <Field name="emailField" type="TextField" visibility="private"/>
+        <Field name="photoField" type="TextField" visibility="private"/>
+        <Field name="pwordField" type="PasswordField" visibility="private"/>
+        <Field name="pword2Field" type="PasswordField" visibility="private"/>
+        <Field name="registerBut" type="Button" visibility="private"/>
+        <Field name="pw1Label" type="Label" visibility="private"/>
+        <Field name="pw2Label" type="Label" visibility="private"/>
+        <Field name="fillLabel" type="Label" visibility="private"/>
+        <Field name="emailLabel" type="Label" visibility="private"/>
+        <Field name="ssnField" type="TextField" visibility="private"/>
+        <Field name="ssnLabel" type="Label" visibility="private"/>
+        <Field name="phoneField" type="TextField" visibility="private"/>
+        <Field name="phoneLabel" type="Label" visibility="private"/>
+        <Field name="userNameLabel" type="Label" visibility="private"/>
+        <Field name="list" type="UserList" visibility="private"/>
+        <Field name="firstName" type="String" visibility="private"/>
+        <Field name="lastName" type="String" visibility="private"/>
+        <Field name="dob" type="LocalDate" visibility="private"/>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="photoPath" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="phone" type="String" visibility="private"/>
+        <Field name="password2" type="String" visibility="private"/>
+        <Field name="gender" type="String" visibility="private"/>
+        <Field name="ssn" type="String" visibility="private"/>
+        <Field name="fileCH" type="FileChooser" visibility="private"/>
+        <Field name="read" type="Scanner" visibility="private"/>
+        <Field name="one" type="User" visibility="private"/>
+        <Field name="pattern" type="Pattern" visibility="private"/>
+        <Field name="match" type="Matcher" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="cancelAccountBut" returnType="void" visibility="private"/>
+        <Method name="fileChoose" returnType="void" visibility="private"/>
+        <Method name="createAccountBut" returnType="void" visibility="private"/>
+        <Method name="isUserNameAvailable" returnType="boolean" visibility="private"/>
+        <Method name="isFilled" returnType="boolean" visibility="private"/>
+        <Method name="isPhoneValid" returnType="boolean" visibility="private"/>
+        <Method name="isSSNValid" returnType="boolean" visibility="private"/>
+        <Method name="isEmailValid" returnType="boolean" visibility="private"/>
+        <Method name="isPWValid" returnType="boolean" visibility="private"/>
+        <Method name="returnToLogin" returnType="void" visibility="private"/>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="URL" name="url"/>
+          <Argument type="ResourceBundle" name="rb"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LoginController" package="Controllers" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="userField" type="TextField" visibility="private"/>
+        <Field name="passField" type="PasswordField" visibility="private"/>
+        <Field name="createBut" type="Button" visibility="private"/>
+        <Field name="loginLabel" type="Label" visibility="private"/>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="list" type="UserList" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="handleLoginButton" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="event"/>
+        </Method>
+        <Method name="handleCreateButton" returnType="//changes scene to create account
+void" visibility="private">
+          <Argument type="ActionEvent" name="event"/>
+        </Method>
+        <Method name="changeWindow" returnType="void" visibility="private">
+          <Argument type="String" name="fxml"/>
+          <Argument type="String" name="title"/>
+        </Method>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="URL" name="url"/>
+          <Argument type="ResourceBundle" name="rb"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Main" package="Controllers" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="start" returnType="void" visibility="public">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="WelcomeController" package="Controllers" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="logoutButton" type="Button" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="LogOut" returnType="void" visibility="private"/>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="URL" name="url"/>
+          <Argument type="ResourceBundle" name="rb"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="EmptyException" package="Exceptions" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="msg"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="FullException" package="Exceptions" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="msg"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="NullElementException" package="Exceptions" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="msg"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="NullUserException" package="Exceptions" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="msg"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="OutOfBoundsException" package="Exceptions" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="msg"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Interface name="IndexedLinkedListInterface" package="Interfaces" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Methods>
+        <Method name="add" returnType="void" visibility="public">
+          <Argument type="E" name="element"/>
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="set" returnType="void" visibility="public">
+          <Argument type="E" name="element"/>
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="remove" returnType="E" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="indexOf" returnType="int" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="contains" returnType="boolean" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="get" returnType="E" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="InteratorInterface" package="Interfaces" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Methods>
+        <Method name="reset" returnType="void" visibility="public"/>
+        <Method name="getNext" returnType="E" visibility="public"/>
+        <Method name="hasNext" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="OrderedLinkedListInterface" package="Interfaces" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Methods>
+        <Method name="add" returnType="void" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="remove" returnType="E" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="contains" returnType="boolean" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="get" returnType="E" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="QueueInterface" package="Interfaces" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Methods>
+        <Method name="Enqueue" returnType="void" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="Dequeue" returnType="E" visibility="public"/>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="isFull" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="StackInterface" package="Interfaces" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Methods>
+        <Method name="push" returnType="void" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="pop" returnType="E" visibility="public"/>
+        <Method name="top" returnType="E" visibility="public"/>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="isFull" returnType="boolean" visibility="public"/>
+        <Method name="Size" returnType="int" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Class name="IndexedLinkedList" package="structures" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields>
+        <Field name="headPointer" type="Node&lt;E&gt;" visibility="private"/>
+        <Field name="currentPointer" type="Node&lt;E&gt;" visibility="private"/>
+        <Field name="prevPointer" type="Node&lt;E&gt;" visibility="private"/>
+        <Field name="count" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="add" returnType="void" visibility="public">
+          <Argument type="E" name="element"/>
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="set" returnType="void" visibility="public">
+          <Argument type="E" name="element"/>
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="remove" returnType="E" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="indexOf" returnType="int" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="get" returnType="E" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="contains" returnType="boolean" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="reset" returnType="void" visibility="public"/>
+        <Method name="getNext" returnType="E" visibility="public"/>
+        <Method name="hasNext" returnType="boolean" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Node" package="structures" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="data" type="T" visibility="private"/>
+        <Field name="pointer" type="Node&lt;T&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="T" name="element"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="T" name="element"/>
+          <Argument type="Node&lt;T&gt;" name="pointer"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getData" returnType="T" visibility="public"/>
+        <Method name="setData" returnType="void" visibility="public">
+          <Argument type="T" name="data"/>
+        </Method>
+        <Method name="getPointer" returnType="Node&lt;T&gt;" visibility="public"/>
+        <Method name="setPointer" returnType="void" visibility="public">
+          <Argument type="Node&lt;T&gt;" name="pointer"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="OrderedLinkedList" package="structures" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Fields>
+        <Field name="headPointer" type="Node&lt;E&gt;" visibility="private"/>
+        <Field name="currentPointer" type="Node&lt;E&gt;" visibility="private"/>
+        <Field name="prevPointer" type="Node&lt;E&gt;" visibility="private"/>
+        <Field name="count" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="void" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="remove" returnType="E" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="contains" returnType="boolean" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="get" returnType="E" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="reset" returnType="void" visibility="public"/>
+        <Method name="getNext" returnType="E" visibility="public"/>
+        <Method name="hasNext" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="QueueList" package="structures" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields>
+        <Field name="front" type="int" visibility="private"/>
+        <Field name="back" type="int" visibility="private"/>
+        <Field name="CAPACITY" type="int" visibility="private" isFinal="true"/>
+        <Field name="size" type="int" visibility="private"/>
+        <Field name="list" type="E[]" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="size"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="Enqueue" returnType="void" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="Dequeue" returnType="E" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="isFull" returnType="boolean" visibility="public"/>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="StackList" package="structures" visibility="public" xPosition="1520.0" yPosition="820.0">
+      <Fields>
+        <Field name="top" type="StackList" visibility="private" isStatic="true"/>
+        <Field name="data" type="E" visibility="private"/>
+        <Field name="size" type="int" visibility="private"/>
+        <Field name="next" type="StackList" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="private">
+          <Argument type="E" name="n1"/>
+          <Argument type="StackList" name="node"/>
+          <Argument type="int" name="count"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="push" returnType="void" visibility="public">
+          <Argument type="E" name="element"/>
+        </Method>
+        <Method name="top" returnType="E" visibility="public"/>
+        <Method name="pop" returnType="E" visibility="public"/>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="Size" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="isFull" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="structures.StackList" target="Interfaces.StackInterface"/>
+    <UseRelation source="classes.UserList" target="classes.User" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="structures.IndexedLinkedList" target="Interfaces.IndexedLinkedListInterface"/>
+    <IsRelation name="is" source="Interfaces.OrderedLinkedListInterface" target="Interfaces.InteratorInterface"/>
+    <HasRelation name="next" source="structures.StackList" target="structures.StackList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="StackList"/>
+    <HasRelation name="list" source="Controllers.CreateAccountController" target="classes.UserList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="UserList"/>
+    <HasRelation name="list" source="Controllers.LoginController" target="classes.UserList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="UserList"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="structures.QueueList" target="Interfaces.QueueInterface"/>
+    <HasRelation name="userList" source="classes.UserList" target="classes.User" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="QueueList&lt;User&gt;"/>
+    <IsRelation name="is" source="classes.User" target="classes.Person"/>
+    <IsRelation name="is" source="Interfaces.IndexedLinkedListInterface" target="Interfaces.InteratorInterface"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="structures.OrderedLinkedList" target="Interfaces.OrderedLinkedListInterface"/>
+    <HasRelation name="one" source="Controllers.CreateAccountController" target="classes.User" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="structures.Node" target="structures.Node" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="top" source="structures.StackList" target="structures.StackList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="StackList"/>
+    <UseRelation source="classes.User" target="classes.User" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
