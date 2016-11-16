@@ -51,7 +51,7 @@ public class LoginController implements Initializable {
         if (list.doesUsernameExist(username)) {
             if (list.getUser(username).getPassword().matches(password)) {
                 //change to welcome windows
-                changeWindow("Views/Welcome.fxml", "Welcome");
+                changeWindow("Views/HospitalList.fxml", "Hospital List");
             } else {//password error
                 loginLabel.setText("Passowrd Invalid");
             }
