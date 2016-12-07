@@ -7,24 +7,28 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="800.0"
-           xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controllers.HospitalListController">
+<SplitPane dividerPositions="0.1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HospitalListController">
   <items>
-            <TextField onKeyReleased="#handleEnterPressed"  text="Search Zip Code" fx:id="searchBox" alignment="CENTER"  prefWidth="800.0" maxHeight="-Infinity" maxWidth="-Infinity"/>
+      <HBox>
+         <children>
+            <Button mnemonicParsing="false" text="Log Out" fx:id="logoutButton" onAction="#LogOut"/>
+                  <TextField fx:id="searchBox" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" onKeyReleased="#handleEnterPressed" prefWidth="670.0" text="Search Zip Code" />
+            <Button mnemonicParsing="false" text="Search" fx:id="searchButton" onAction="#search"/>
+         </children>
+      </HBox>
     <AnchorPane minHeight="0.0" minWidth="0.0">
          <children>
-            <TableView fx:id="HospitalTable" editable="false" prefWidth="800.0" maxHeight="-Infinity" maxWidth="-Infinity">
+            <TableView fx:id="HospitalTable" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="800.0" >
               <columns>
-                <TableColumn fx:id="nameCol" prefWidth="160.0" text="Name" editable="false"  />
-                <TableColumn fx:id="addressCol" prefWidth="130.0" text="Address" editable="false"  />
-                <TableColumn fx:id="cityCol" prefWidth="100.0" text="City" editable="false"  />
-                <TableColumn fx:id="stateCol" prefWidth="25.0" text="State" editable="false"  />
-                <TableColumn fx:id="zipCol" prefWidth="60.0" text="Zip Code" editable="false"  />
-                <TableColumn fx:id="latCol" prefWidth="70.0" text="Latitude" editable="false"  />
-                <TableColumn fx:id="longCol" prefWidth="70.0" text="Longitude" editable="false"  />
-                <TableColumn fx:id="phoneCol" prefWidth="85.0" text="Phone Number" editable="false"  />
-                <TableColumn fx:id="imageCol" prefWidth="100.0" text="Image" editable="false"  />
+                <TableColumn fx:id="nameCol" editable="false" prefWidth="160.0" text="Name" />
+                <TableColumn fx:id="addressCol" editable="false" prefWidth="130.0" text="Address" />
+                <TableColumn fx:id="cityCol" editable="false" prefWidth="100.0" text="City" />
+                <TableColumn fx:id="stateCol" editable="false" prefWidth="25.0" text="State" />
+                <TableColumn fx:id="zipCol" editable="false" prefWidth="60.0" text="Zip Code" />
+                <TableColumn fx:id="latCol" editable="false" prefWidth="70.0" text="Latitude" />
+                <TableColumn fx:id="longCol" editable="false" prefWidth="70.0" text="Longitude" />
+                <TableColumn fx:id="phoneCol" editable="false" prefWidth="85.0" text="Phone Number" />
+                <TableColumn fx:id="imageCol" editable="false" prefWidth="100.0" text="Image" />
               </columns>
             </TableView>
          </children></AnchorPane>

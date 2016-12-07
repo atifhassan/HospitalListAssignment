@@ -2,7 +2,7 @@
 Atif Hassan
 CSC 202
 Controller for Welcome FXML
-*/
+ */
 package Controllers;
 
 import java.io.IOException;
@@ -23,13 +23,13 @@ import javafx.stage.Stage;
  * @author atifm
  */
 public class WelcomeController implements Initializable {
-    
+
     @FXML
     private Button logoutButton;
 
-/*
+    /*
     Returns user back to Login in screen
-    */    
+     */
     @FXML
     private void LogOut() {
         Stage createAccount = (Stage) logoutButton.getScene().getWindow();
@@ -39,16 +39,16 @@ public class WelcomeController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         Scene scene = new Scene(root);
-        
+
         createAccount.setTitle("Login");
         scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
         createAccount.setScene(scene);
-        
+
         createAccount.centerOnScreen();
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

@@ -19,12 +19,17 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
+import javafx.stage.Stage;
 import structures.BinarySearchTree;
 
 /**
@@ -59,6 +64,10 @@ public class HospitalListController implements Initializable {
     private TableColumn imageCol;
     @FXML
     private TextField searchBox;
+    @FXML
+    private Button logoutButton;
+    @FXML
+    private Button searchButton;
 
     /**
      * Initializes the controller class.
@@ -68,6 +77,59 @@ public class HospitalListController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        excelToBST();
+        populateList(hospitalData);
+    }
+
+    /**
+     *
+     * @param event
+     */
+    @FXML
+    private void handleEnterPressed() {
+        searchBox.getParent().setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                hospitalResults();
+                searchBox.editableProperty().set(false);
+                searchButton.setText("New Search");
+            }
+        });
+    }
+
+    @FXML
+    private void search(){
+        if(searchButton.getText().equals("Search")){
+            hospitalResults();
+            searchBox.editableProperty().set(false);
+            searchButton.setText("New Search");
+        }
+        else{
+            searchButton.setText("Search");
+            searchBox.editableProperty().set(true);
+            searchBox.setText("Search Zip Code");
+            populateList(hospitalData);
+        }
+    }
+    private void hospitalResults() {
+        String zipCode = searchBox.getText();
+        System.out.println(zipCode);
+        Hospital temp = new Hospital();
+        temp.setZipCode(zipCode);
+        if (bst.Contains(temp)) {
+            try {
+                temp = bst.Get(temp);
+            } catch (EmptyException | NullElementException ex) {
+            }
+            ObservableList<Hospital> results = FXCollections.observableArrayList();
+            results.add(temp);
+            populateList(results);
+            searchButton.setText("New Search");
+        } else {
+            searchBox.setText("Hospital Not Found");
+        }
+    }
+
+    private void excelToBST() {
         try {
             excel = new ReadHospitalList();
         } catch (IOException ex) {
@@ -88,7 +150,10 @@ public class HospitalListController implements Initializable {
             hospitalData.add(hospital);
             bst.Add(hospital);
         }
-        HospitalTable.setItems(hospitalData);
+    }
+
+    private void populateList(ObservableList<Hospital> temp) {
+        HospitalTable.setItems(temp);
         nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
         cityCol.setCellValueFactory(new PropertyValueFactory<>("City"));
@@ -101,18 +166,25 @@ public class HospitalListController implements Initializable {
         HospitalTable.getColumns().setAll(nameCol, addressCol, cityCol, stateCol, zipCol, latCol, longCol, phoneCol, imageCol);
     }
 
-    /**
-     *
-     * @param event
+    /*
+    Returns user back to Login in screen
      */
     @FXML
-    private void handleEnterPressed() throws EmptyException, NullElementException {
-        //if (event.getCode() == KeyCode.ENTER) {
-        String zipCode = searchBox.getText();
-        Hospital temp = new Hospital();
-        temp.setZipCode(zipCode);
-        if (bst.Contains(temp)) {
-            System.out.println(bst.Get(temp));
+    private void LogOut() {
+        Stage createAccount = (Stage) logoutButton.getScene().getWindow();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("Views/Login.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        Scene scene = new Scene(root);
+
+        createAccount.setTitle("Login");
+        scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
+        createAccount.setScene(scene);
+
+        createAccount.centerOnScreen();
     }
 }
