@@ -17,9 +17,9 @@ import Interfaces.IndexedLinkedListInterface;
  */
 public class IndexedLinkedList<E extends Comparable> implements IndexedLinkedListInterface<E> {
 
-    private Node<E> headPointer;
-    private Node<E> currentPointer;
-    private Node<E> prevPointer;
+    private LinkedListNode<E> headPointer;
+    private LinkedListNode<E> currentPointer;
+    private LinkedListNode<E> prevPointer;
     private int count = 0;
 
     /**
@@ -36,7 +36,7 @@ public class IndexedLinkedList<E extends Comparable> implements IndexedLinkedLis
         } else if(contains(element)){
             throw new RepeatElementException();
         }else {
-            Node<E> newNode = new Node<>(element);
+            LinkedListNode<E> newNode = new LinkedListNode<>(element);
             currentPointer = headPointer;
             prevPointer = headPointer;
             if (index == 0) {
@@ -228,7 +228,7 @@ public class IndexedLinkedList<E extends Comparable> implements IndexedLinkedLis
 
     @Override
     public String toString() {
-        Node<E> temp = headPointer;
+        LinkedListNode<E> temp = headPointer;
         String list = "";
         while (temp != null) {
             list += temp.getData() + " ";

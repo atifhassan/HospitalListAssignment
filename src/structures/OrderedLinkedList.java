@@ -17,9 +17,9 @@ import Interfaces.OrderedLinkedListInterface;
  */
 public class OrderedLinkedList<E extends Comparable> implements OrderedLinkedListInterface<E> {
 
-    private Node<E> headPointer;
-    private Node<E> currentPointer;
-    private Node<E> prevPointer;
+    private LinkedListNode<E> headPointer;
+    private LinkedListNode<E> currentPointer;
+    private LinkedListNode<E> prevPointer;
     private int count = 0;
 
     /**
@@ -39,7 +39,7 @@ public class OrderedLinkedList<E extends Comparable> implements OrderedLinkedLis
         if(contains(element)){
             throw new RepeatElementException();
         }
-        Node<E> newNode = new Node<>(element);
+        LinkedListNode<E> newNode = new LinkedListNode<>(element);
         if (isEmpty()) {
             newNode.setPointer(headPointer);
             headPointer = newNode;
@@ -81,7 +81,7 @@ public class OrderedLinkedList<E extends Comparable> implements OrderedLinkedLis
 
     @Override
     public String toString() {
-        Node<E> temp = headPointer;
+        LinkedListNode<E> temp = headPointer;
         String list = "";
         while (temp != null) {
             list += temp.getData() + " ";
@@ -106,10 +106,10 @@ public class OrderedLinkedList<E extends Comparable> implements OrderedLinkedLis
             throw new NullElementException("Element does not exist");
         }
 
-        Node<E> currentTemp = headPointer;
+        LinkedListNode<E> currentTemp = headPointer;
         E temp = currentTemp.getData();
         if (temp != element) {
-            Node<E> previous;
+            LinkedListNode<E> previous;
             do {
                 previous = currentTemp;
                 currentTemp = currentTemp.getPointer();
@@ -131,7 +131,7 @@ public class OrderedLinkedList<E extends Comparable> implements OrderedLinkedLis
     @Override
     public boolean contains(E element) {
         E temp;
-        Node<E> currentTemp = headPointer;
+        LinkedListNode<E> currentTemp = headPointer;
         boolean contains = false;
         while (currentTemp != null) {
             temp = currentTemp.getData();
@@ -158,7 +158,7 @@ public class OrderedLinkedList<E extends Comparable> implements OrderedLinkedLis
         if (!contains(element)) {
             throw new NullElementException("Element does not exist");
         }
-        Node<E> tempPointer = headPointer;
+        LinkedListNode<E> tempPointer = headPointer;
         E temp = tempPointer.getData();
         do {
             tempPointer = tempPointer.getPointer();

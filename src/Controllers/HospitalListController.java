@@ -106,20 +106,13 @@ public class HospitalListController implements Initializable {
      * @param event
      */
     @FXML
-    private void handleEnterPressed() {
+    private void handleEnterPressed() throws EmptyException, NullElementException {
         //if (event.getCode() == KeyCode.ENTER) {
-            String zipCode = searchBox.getText();
-            Hospital temp = new Hospital();
-            temp.setZipCode(zipCode);
-            try {
-                Hospital record = bst.Get(temp);
-                System.out.println(temp);
-                //get zip code from box
-            } catch (EmptyException | NullElementException ex) {
-                Logger.getLogger(HospitalListController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        //}
-        
-        //}
+        String zipCode = searchBox.getText();
+        Hospital temp = new Hospital();
+        temp.setZipCode(zipCode);
+        if (bst.Contains(temp)) {
+            System.out.println(bst.Get(temp));
+        }
     }
 }

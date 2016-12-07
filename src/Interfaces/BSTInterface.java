@@ -34,9 +34,8 @@ public interface BSTInterface<E extends Comparable<E>> {
      *
      * @param element
      * @return
-     * @throws Exceptions.EmptyException
      */
-    public boolean Contains(E element) throws EmptyException;
+    public boolean Contains(E element);
 
     /**
      *

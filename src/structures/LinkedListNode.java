@@ -10,15 +10,15 @@ package structures;
  * @author Atif Hassan
  * @param <T>
  */
-public class Node<T> {
+public class LinkedListNode<T> {
 
     private T data;
-    private Node<T> pointer;
+    private LinkedListNode<T> pointer;
 
     /**
      * creates a new null node
      */
-    public Node() {
+    public LinkedListNode() {
         data = null;
         pointer = null;
     }
@@ -27,7 +27,7 @@ public class Node<T> {
      *
      * @param element
      */
-    public Node(T element) {
+    public LinkedListNode(T element) {
         data = element;
         pointer = null;
     }
@@ -37,7 +37,7 @@ public class Node<T> {
      * @param element
      * @param pointer
      */
-    public Node(T element, Node<T> pointer) {
+    public LinkedListNode(T element, LinkedListNode<T> pointer) {
         data = element;
         this.pointer = pointer;
     }
@@ -62,7 +62,7 @@ public class Node<T> {
      *
      * @return
      */
-    public Node<T> getPointer() {
+    public LinkedListNode<T> getPointer() {
         return pointer;
     }
 
@@ -70,7 +70,7 @@ public class Node<T> {
      *
      * @param pointer
      */
-    public void setPointer(Node<T> pointer) {
+    public void setPointer(LinkedListNode<T> pointer) {
         this.pointer = pointer;
     }
 

@@ -16,13 +16,9 @@ import Interfaces.BSTInterface;
  */
 public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E> {
 
+    private BSTNode<E> root;//parent node
+    private E found = null;   // used by remove
     private int size = 0;
-    private E data;
-    private BinarySearchTree<E> root;
-    private BinarySearchTree<E> currentPointer;
-    private BinarySearchTree<E> previousPointer;
-    private BinarySearchTree<E> left;
-    private BinarySearchTree<E> right;
 
     /**
      *
@@ -31,46 +27,32 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
         root = null;
     }
 
-    public BinarySearchTree(E data) {
-        this.data = data;
-    }
-
-    public BinarySearchTree(E data, BinarySearchTree<E> left, BinarySearchTree<E> right) {
-        this.data = data;
-        this.left = left;
-        this.right = right;
-    }
-
-    public E getData() {
-        return data;
-    }
-
-    public void setData(E data) {
-        this.data = data;
-    }
-
     /**
      *
      * @param element
      */
     @Override
     public void Add(E element) {
-        //currentPointer = root;
-        //previousPointer = currentPointer;
-        if (isEmpty()) {
-            setData(element);
-        } else //right branch
-        {
-            if (element.compareTo(getData()) <= 0) {
-                left = new BinarySearchTree();
-                left.Add(element);
-            } //left branch
-            else {
-                right = new BinarySearchTree();
-                right.Add(element);
-            }
-        }
+        root = recAdd(element, root);
         size++;
+    }
+
+    /**
+     * Adds element to tree using recursion
+     *
+     * @param element
+     * @param tree
+     * @return
+     */
+    private BSTNode<E> recAdd(E element, BSTNode<E> tree) {
+        if (tree == null) { //empty tree or branch
+            tree = new BSTNode<>(element);
+        } else if (element.compareTo(tree.getData()) <= 0) { // Add in left subtree
+            tree.setLeft(recAdd(element, tree.getLeft()));
+        } else { // Add in right subtrees
+            tree.setRight(recAdd(element, tree.getRight()));
+        }
+        return tree;
     }
 
     /**
@@ -82,31 +64,57 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
      */
     @Override
     public E Remove(E element) throws EmptyException, NullElementException {
-        while (left != null) {
-            //right branch
-            if (element.compareTo(left.getData()) > 0) {
-                right = left;
-                left = left.getRight();
-                right.setRight(left);
-            } //left branch
-            else if (element.compareTo(left.getData()) < 0) {
-                right = left;
-                left = left.getLeft();
-                right.setLeft(left);
-            } //equals branch
-            else {
-                if (right.getRight() == left) {
-                    left = left.getRight();
-                    right.setRight(left);
-                } else {
-                    left = left.getLeft();
-                    right.setLeft(left);
-                }
-                size--;
-                return element;
-            }
+        if (isEmpty()) {
+            throw new EmptyException();
+        } else {
+            root = recRemove(element, root);
+            size--;
+            return found;
         }
-        throw new NullElementException();
+    }
+
+    private BSTNode<E> recRemove(E element, BSTNode<E> tree) throws EmptyException // Removes an element e from tree such that e.compareTo(element) == 0
+    // and returns true; if no such element exists, returns false. 
+    {
+        if (tree == null) {
+            throw new EmptyException();
+        } else if (element.compareTo(tree.getData()) < 0) {
+            tree.setLeft(recRemove(element, tree.getLeft()));
+        } else if (element.compareTo(tree.getData()) > 0) {
+            tree.setRight(recRemove(element, tree.getRight()));
+        } else {
+            tree = removeNode(tree);
+        }
+        return tree;
+    }
+
+    private BSTNode<E> removeNode(BSTNode<E> tree) throws EmptyException // Removes the information at the node referenced by tree.
+    // The user's data in the node referenced by tree is no
+    // longer in the tree.  If tree is a leaf node or has only
+    // a non-null child pointer, the node pointed to by tree is
+    // removed; otherwise, the user's data is replaced by its
+    // logical predecessor and the predecessor's node is removed.
+    {
+        E data;
+        found = tree.getData();
+        if (tree.getLeft() == null) {
+            return tree.getRight();
+        } else if (tree.getRight() == null) {
+            return tree.getLeft();
+        } else {
+            data = getPredecessor(tree.getLeft());
+            tree.setData(data);
+            tree.setLeft(recRemove(data, tree.getLeft()));
+            return tree;
+        }
+    }
+
+    private E getPredecessor(BSTNode<E> tree) // Returns the information held in the rightmost node in tree
+    {
+        while (tree.getRight() != null) {
+            tree = tree.getRight();
+        }
+        return tree.getData();
     }
 
     /**
@@ -115,25 +123,23 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
      * @return
      */
     @Override
-    public boolean Contains(E element) throws EmptyException {
-        if (element.equals(getData())) {
-            return true;
-        } else if (!isEmpty())//right branch
-        {
-            if (element.compareTo(getData()) <= 0) {
-                if (getLeft() == null) {
-                    return false;
-                }
-                left.Contains(element);
-            } //left branch
-            else {
-                if (getRight().isEmpty()) {
-                    return false;
-                }
-                right.Contains(element);
-            }
+    public boolean Contains(E element) {
+
+        if (isEmpty()) {
+            return false;
         } else {
-            throw new EmptyException();
+            BSTNode<E> tree = root;
+            while (tree != null) {
+                if (tree.getData().compareTo(element) == 0) {
+                    return true;
+                } else if (element.compareTo(tree.getData()) < 0) {
+                    //search left branch
+                    tree = tree.getLeft();
+                } else {
+                    //search right branch
+                    tree = tree.getRight();
+                }
+            }
         }
         return false;
     }
@@ -165,14 +171,23 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
      */
     @Override
     public E Get(E element) throws EmptyException, NullElementException {
-        if (!isEmpty()) {
+        if (isEmpty()) {
             throw new EmptyException();
-        }
-        if (!Contains(element)) {
-            throw new NullElementException();
         } else {
-            return element;
+            BSTNode<E> tree = root;
+            while (tree != null) {
+                if (tree.getData().compareTo(element) == 0) {
+                    return tree.getData();
+                } else if (element.compareTo(tree.getData()) < 0) {
+                    //search left branch
+                    tree = tree.getLeft();
+                } else {
+                    //search right branch
+                    tree = tree.getRight();
+                }
+            }
         }
+        throw new NullElementException();
     }
 
     /**
@@ -180,10 +195,8 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
      */
     @Override
     public void Reset() {
-        root = null;
-        left = root;
-        right = left;
         size = 0;
+        root = null;
     }
 
     /**
@@ -199,27 +212,8 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
     public String toString() {
         String list = "";
         if (!isEmpty()) {
-            list += getLeft().toString();
             list += root.toString();
-            list += getRight().toString();
         }
         return list;
     }
-
-    public BinarySearchTree<E> getLeft() {
-        return left;
-    }
-
-    public void setLeft(BinarySearchTree<E> left) {
-        this.left = left;
-    }
-
-    public BinarySearchTree<E> getRight() {
-        return right;
-    }
-
-    public void setRight(BinarySearchTree<E> right) {
-        this.right = right;
-    }
-
 }

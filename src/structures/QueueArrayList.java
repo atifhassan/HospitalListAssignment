@@ -16,7 +16,7 @@ import java.util.Arrays;
  * @author atifm
  * @param <E>
  */
-public class QueueList<E> implements Serializable, QueueInterface<E> {
+public class QueueArrayList<E> implements Serializable, QueueInterface<E> {
 
     private int front = 0;
     private int back = 0;
@@ -27,7 +27,7 @@ public class QueueList<E> implements Serializable, QueueInterface<E> {
     /**
      * creates queue array with default length
      */
-    public QueueList() {
+    public QueueArrayList() {
         CAPACITY = 10;
         list = (E[]) (new Object[CAPACITY]);
     }
@@ -36,7 +36,7 @@ public class QueueList<E> implements Serializable, QueueInterface<E> {
      *
      * @param size
      */
-    public QueueList(int size) {
+    public QueueArrayList(int size) {
         CAPACITY = size;
         list = (E[]) (new Object[CAPACITY]);
     }

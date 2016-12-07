@@ -12,17 +12,17 @@ import Interfaces.StackInterface;
  * @author atifm
  * @param <E>
  */
-public class StackList<E> implements StackInterface<E> {
+public class StackLinkedList<E> implements StackInterface<E> {
 
-    private static StackList top;
+    private static StackLinkedList top;
     private E data;
     private int size;
-    private final StackList next;
+    private final StackLinkedList next;
 
     /**
      * creates recursive node
      */
-    public StackList() {
+    public StackLinkedList() {
         top = null;
         next = null;
         size = 0;
@@ -33,7 +33,7 @@ public class StackList<E> implements StackInterface<E> {
      * @param n1
      * @param node
      */
-    private StackList(E n1, StackList node, int count) {
+    private StackLinkedList(E n1, StackLinkedList node, int count) {
         data = n1;
         next = node;
         size = count;
@@ -46,7 +46,7 @@ public class StackList<E> implements StackInterface<E> {
     @Override
     public void push(E element) {
         size++;
-        top = new StackList(element, top,size);
+        top = new StackLinkedList(element, top,size);
     }
 
     /**
@@ -103,7 +103,7 @@ public class StackList<E> implements StackInterface<E> {
     @Override
     public String toString() {
         String list = "";
-        StackList temp = top;
+        StackLinkedList temp = top;
         while (temp != null) {
             list += temp.data.toString() + " ";
             temp = temp.next;

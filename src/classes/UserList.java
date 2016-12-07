@@ -16,7 +16,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import structures.QueueList;
+import structures.QueueArrayList;
 
 /**
  *
@@ -24,7 +24,7 @@ import structures.QueueList;
  */
 public class UserList {
 
-    private QueueList<User> userList;
+    private QueueArrayList<User> userList;
     private ObjectOutputStream out;
     private ObjectInputStream in;
     private final String FILE;
@@ -34,7 +34,7 @@ public class UserList {
      */
     public UserList() {
         FILE = "databases/userList.dat";
-        userList = new QueueList<>();
+        userList = new QueueArrayList<>();
     }
 
     /**
@@ -45,7 +45,7 @@ public class UserList {
         FILE = fileName;
         try {
             in = new ObjectInputStream(new FileInputStream(fileName));
-            userList = (QueueList<User>) in.readObject();
+            userList = (QueueArrayList<User>) in.readObject();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(UserList.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | ClassNotFoundException ex) {

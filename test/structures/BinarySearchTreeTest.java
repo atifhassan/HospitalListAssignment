@@ -5,10 +5,6 @@
  */
 package structures;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -17,40 +13,6 @@ import static org.junit.Assert.*;
  * @author Atif Hassan
  */
 public class BinarySearchTreeTest {
-    
-    /**
-     *
-     */
-    public BinarySearchTreeTest() {
-    }
-    
-    /**
-     *
-     */
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    /**
-     *
-     */
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    /**
-     *
-     */
-    @Before
-    public void setUp() {
-    }
-    
-    /**
-     *
-     */
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of Add method, of class BinarySearchTree.
@@ -67,6 +29,7 @@ public class BinarySearchTreeTest {
         instance.Add("B");
         Object expResult = 6;
         Object result = instance.Size();
+        System.out.println(instance.toString());
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -74,6 +37,7 @@ public class BinarySearchTreeTest {
 
     /**
      * Test of Remove method, of class BinarySearchTree.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -90,12 +54,14 @@ public class BinarySearchTreeTest {
         Object result = instance.Remove("P");
         assertEquals(expResult, result);
         System.out.println(instance.Size());
+        System.out.println(instance.toString());
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
 
     /**
      * Test of Contains method, of class BinarySearchTree.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -157,6 +123,7 @@ public class BinarySearchTreeTest {
 
     /**
      * Test of Get method, of class BinarySearchTree.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -173,7 +140,7 @@ public class BinarySearchTreeTest {
         Object result = instance.Get("P");
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -196,6 +163,7 @@ public class BinarySearchTreeTest {
 
     /**
      * Test of getNext method, of class BinarySearchTree.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -208,11 +176,31 @@ public class BinarySearchTreeTest {
         instance.Add("P");
         instance.Add("A");
         instance.Add("B");
-        Object expResult = null;
+        Object expResult = "O";
         Object result = instance.getNext();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
+    /**
+     * Test of toString method, of class BinarySearchTree.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        BinarySearchTree instance = new BinarySearchTree();
+        instance.Add("C");
+        instance.Add("O");
+        instance.Add("M");
+        instance.Add("P");
+        instance.Add("A");
+        instance.Add("B");
+        String expResult = "A, B, C, M, O, P, ";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
 }

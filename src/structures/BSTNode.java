@@ -21,12 +21,6 @@ public class BSTNode<E extends Comparable<E>> {
         right = null;
     }
 
-    public BSTNode(E data, BSTNode<E> left, BSTNode<E> right) {
-        this.data = data;
-        this.left = left;
-        this.right = right;
-    }
-
     public E getData() {
         return data;
     }
@@ -51,6 +45,16 @@ public class BSTNode<E extends Comparable<E>> {
         this.right = right;
     }
     
-    
-    
+    @Override
+    public String toString(){
+        String list = "";
+        if(getLeft()!=null){
+            list += getLeft().toString();
+        }
+        list += data.toString() + ", ";    
+        if(getRight()!=null){
+            list += getRight().toString();
+        }
+        return list;
+    }
 }
